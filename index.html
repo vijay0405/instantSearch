@@ -2,6 +2,7 @@
 
 <head>
     <title>search</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,7 +17,6 @@
 
         search_input.addEventListener('input', e => {
             search_term = e.target.value;
-
             showCountries();
         });
 
@@ -24,7 +24,7 @@
 
         const fetchCountries = async () => {
             countries = await fetch(
-                'https://restcountries.eu/rest/v2/all?fields=name;population;flag'
+                'https://restcountries.eu/rest/v2/all'
             ).then(res => res.json());
         };
 
@@ -40,6 +40,7 @@
             const ul = document.createElement('ul');
             ul.classList.add('countries');
 
+            console.log(countries);
 
             countries
                 .filter(country =>
@@ -70,11 +71,23 @@
                     country_info.appendChild(country_population);
                     country_info.appendChild(country_popupation_text);
 
+                    const currency_info = document.createElement('div');
+                    currency_info.classList.add('currency-info');
+                    
+                    console.log(country.currencies[0].name);
+                    const currency_name = document.createElement('h2');
+                    currency_name.innerText = numberWithCommas(country.currencies[0].name);
+                    currency_name.classList.add('country-population');
+                    currency_info.appendChild(currency_name);
+
                     li.appendChild(country_flag);
                     li.appendChild(country_name);
                     li.appendChild(country_info);
-
+                    li.appendChild(currency_info);
+                    
                     ul.appendChild(li);
+                    // ul.appendChild(currency_info);
+
                 });
 
             results.appendChild(ul);

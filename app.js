@@ -67,6 +67,10 @@ const showCountries = async () => {
             currency_name.innerText = numberWithCommas(country.currencies[0].name);
             currency_name.classList.add('country-population');
             currency_info.appendChild(currency_name);
+            const currency_symbol_text = document.createElement('h5');
+            currency_symbol_text.innerText = country.currencies[0].symbol;
+            currency_symbol_text.classList.add('country-population-text');
+            currency_info.appendChild(currency_symbol_text)
 
             li.appendChild(country_flag);
             li.appendChild(country_name);

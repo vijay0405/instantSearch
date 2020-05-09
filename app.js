@@ -28,8 +28,6 @@ const showCountries = async () => {
     const ul = document.createElement('ul');
     ul.classList.add('countries');
 
-    console.log(countries);
-
     countries
         .filter(country =>
             country.name.toLowerCase().includes(search_term.toLowerCase())
@@ -61,17 +59,11 @@ const showCountries = async () => {
 
             const currency_info = document.createElement('div');
             currency_info.classList.add('currency-info');
-
-            console.log(country.currencies[0].name);
+          
             const currency_name = document.createElement('h2');
-            currency_name.innerText = numberWithCommas(country.currencies[0].name);
+            currency_name.innerText = numberWithCommas(country.currencies[0].name) + '(' + country.currencies[0].symbol + ')';
             currency_name.classList.add('country-population');
             currency_info.appendChild(currency_name);
-            const currency_symbol_text = document.createElement('h5');
-            currency_symbol_text.innerText = country.currencies[0].symbol;
-            currency_symbol_text.classList.add('country-population-text');
-            currency_info.appendChild(currency_symbol_text)
-
             li.appendChild(country_flag);
             li.appendChild(country_name);
             li.appendChild(country_info);
